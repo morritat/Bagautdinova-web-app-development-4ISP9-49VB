@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.png">
+    <title>Мои заявки — Конференции.РФ</title>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/static/img/logo.png" alt="Логотип">
+                <span>Конференции.РФ</span>
+            </a>
+            <nav class="nav" id="nav"></nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое: список своих заявок -->
+    <main class="main container">
+        <div id="messages"></div>
+
+        <section class="cabinet">
+            <h1 class="section-title">Мои заявки</h1>
+            <!-- Приветствие по имени подставляет cabinet.js -->
+            <p class="cabinet__hello" id="hello"></p>
+            <a class="btn btn-primary button" href="/booking/new">+ Новая заявка</a>
+            <p class="cabinet__empty" id="emptyText" hidden>У вас пока нет заявок.</p>
+            <!-- Карточки заявок (статусы, удаление, отзыв) добавляет cabinet.js -->
+            <div class="row g-3 cabinet__list" id="bookingList"></div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2027 Конференции.РФ — бронирование помещений для всероссийских конференций</p>
+        </div>
+    </footer>
+
+    <script src="/static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/cabinet.js"></script>
+</body>
+</html>

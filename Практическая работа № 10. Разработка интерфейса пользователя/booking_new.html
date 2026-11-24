@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.png">
+    <title>Новая заявка — Конференции.РФ</title>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/static/img/logo.png" alt="Логотип">
+                <span>Конференции.РФ</span>
+            </a>
+            <nav class="nav" id="nav"></nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое: форма новой заявки -->
+    <main class="main container">
+        <div id="messages"></div>
+
+        <section class="form-box">
+            <h1 class="form-box__title">Новая заявка</h1>
+            <form id="bookingForm" class="form" method="post" action="/booking/new" novalidate>
+                <div class="form__group">
+                    <label class="form-label" for="room_id">Помещение</label>
+                    <!-- Пункты списка (помещения из базы) добавляет booking.js -->
+                    <select class="form-select" id="room_id" name="room_id">
+                        <option value="">— выберите помещение —</option>
+                    </select>
+                    <div class="form__error" data-error="room"></div>
+                </div>
+                <div class="form__group">
+                    <label class="form-label" for="start_date">Дата начала конференции</label>
+                    <input class="form-control" id="start_date" name="start_date" type="date">
+                    <div class="form__error" data-error="start_date"></div>
+                </div>
+                <!-- Переключатели с общим name: выбрать можно только один вариант -->
+                <fieldset class="form__group">
+                    <legend class="form-label form__legend">Способ оплаты</legend>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="pay1" name="payment_method" value="При очном посещении">
+                        <label class="form-check-label" for="pay1">При очном посещении</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="pay2" name="payment_method" value="Перевод по СБП">
+                        <label class="form-check-label" for="pay2">Перевод по СБП</label>
+                    </div>
+                    <div class="form__error" data-error="payment_method"></div>
+                </fieldset>
+                <button class="btn btn-primary button w-100" type="submit">Отправить</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2027 Конференции.РФ — бронирование помещений для всероссийских конференций</p>
+        </div>
+    </footer>
+
+    <script src="/static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/booking.js"></script>
+</body>
+</html>

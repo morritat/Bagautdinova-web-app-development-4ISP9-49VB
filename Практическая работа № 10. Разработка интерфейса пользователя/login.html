@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.png">
+    <title>Вход — Конференции.РФ</title>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/static/img/logo.png" alt="Логотип">
+                <span>Конференции.РФ</span>
+            </a>
+            <nav class="nav" id="nav"></nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое: форма входа -->
+    <main class="main container">
+        <div id="messages"></div>
+
+        <section class="form-box">
+            <h1 class="form-box__title">Вход в систему</h1>
+            <form id="loginForm" class="form" method="post" action="/login" novalidate>
+                <!-- Общая ошибка формы: «Неверный логин или пароль» -->
+                <div class="form__error form__error--common" data-error="common"></div>
+                <div class="form__group">
+                    <label class="form-label" for="login">Логин</label>
+                    <input class="form-control" id="login" name="login">
+                    <div class="form__error" data-error="login"></div>
+                </div>
+                <div class="form__group">
+                    <label class="form-label" for="password">Пароль</label>
+                    <input class="form-control" id="password" name="password" type="password">
+                    <div class="form__error" data-error="password"></div>
+                </div>
+                <button class="btn btn-primary button w-100" type="submit">Войти</button>
+            </form>
+            <!-- Текст ссылки — точно как в задании: «Еще» через е -->
+            <p class="form-box__switch">Еще не зарегистрированы? <a href="/register">Регистрация</a></p>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2027 Конференции.РФ — бронирование помещений для всероссийских конференций</p>
+        </div>
+    </footer>
+
+    <script src="/static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/validation.js"></script>
+</body>
+</html>

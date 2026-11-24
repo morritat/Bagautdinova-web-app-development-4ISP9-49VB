@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.png">
+    <title>Панель администратора — Конференции.РФ</title>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/static/img/logo.png" alt="Логотип">
+                <span>Конференции.РФ</span>
+            </a>
+            <nav class="nav" id="nav"></nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое: все заявки, фильтр, смена статуса -->
+    <main class="main container">
+        <div id="messages"></div>
+
+        <section class="admin">
+            <h1 class="section-title">Панель администратора</h1>
+
+            <!-- Фильтр заявок по статусу: пункты статусов добавляет admin.js -->
+            <form class="admin__filter" id="filterForm">
+                <label class="form-label" for="statusFilter">Показать заявки:</label>
+                <select class="form-select" id="statusFilter" name="status">
+                    <option value="">Все</option>
+                </select>
+                <button class="btn btn-outline-primary button" type="submit">Применить</button>
+            </form>
+
+            <p class="admin__empty" id="emptyText" hidden>Заявок нет.</p>
+            <!-- Карточки заявок с формой смены статуса добавляет admin.js -->
+            <div class="row g-3" id="bookingList"></div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2027 Конференции.РФ — бронирование помещений для всероссийских конференций</p>
+        </div>
+    </footer>
+
+    <script src="/static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/admin.js"></script>
+</body>
+</html>
