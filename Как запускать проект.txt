@@ -1,0 +1,65 @@
+# Веб-приложение «Конференции.РФ» — порядок запуска
+
+Портал бронирования помещений (аудитория, коворкинг, кинозал)
+для всероссийских конференций.
+Стек: Windows, Python 3 + Flask, SQLite, HTML5, CSS3, Bootstrap 5 (локально), JavaScript, Git.
+
+## 1. Требования
+- Windows 10/11;
+- Python 3.10 и новее (проверка: `python --version`);
+- Git (проверка: `git --version`);
+- VS Code (рекомендуется).
+
+## 2. Подготовка к запуску
+1. Открыть терминал (PowerShell или терминал VS Code) в папке проекта:
+   cd C:\Users\user\Desktop\ПОЧТИ КОНЕЦ\konf.rf
+2. Создать и активировать виртуальное окружение:
+   python -m venv venv
+   .\venv\Scripts\activate
+   (в начале строки появится приставка (venv))
+3. Установить зависимости:
+   pip install Flask Werkzeug
+
+## 3. Создание базы данных и администратора (один раз)
+   python create_admin.py
+Скрипт создаёт файл conferences.db (SQLite), строит таблицы по schema.sql,
+заполняет справочник помещений и создаёт администратора:
+   логин: Conf2027
+   пароль: Demo77
+
+## 4. Запуск приложения
+   flask --app app run --debug
+   (или: python app.py)
+Открыть в браузере: http://127.0.0.1:5000
+Остановить сервер: Ctrl+C в терминале.
+
+## 5. Краткий сценарий проверки
+1. Регистрация с пустыми полями — под каждым из 5 полей видна ошибка.
+2. Правильная регистрация — сообщение об успехе и переход на страницу входа.
+3. Вход пользователем — открываются «Мои заявки», создаются две заявки.
+4. Выход, вход Conf2027 / Demo77 — панель администратора со всеми заявками.
+5. Смена статуса заявки — новое значение сохраняется в базе (таблица bookings).
+6. У завершённой заявки пользователь видит форму отзыва и оставляет отзыв.
+7. Все страницы корректно отображаются при ширине 390 px (F12, Ctrl+Shift+M).
+
+## 6. Сброс базы данных
+Удалить файл conferences.db и снова выполнить: python create_admin.py
+
+## 7. Возможные проблемы и решения
+| Сообщение | Причина и решение |
+|---|---|
+| ModuleNotFoundError: No module named 'flask' | Не активировано окружение: .\venv\Scripts\activate |
+| no such table: users | Не создана база: выполнить python create_admin.py |
+| sqlite3.OperationalError near "SERIAL" | schema.sql должен быть версии SQLite: INTEGER PRIMARY KEY AUTOINCREMENT и datetime('now','localtime') вместо SERIAL и NOW() |
+| Address already in use | Сервер уже запущен в другом терминале: остановить его (Ctrl+C) |
+| Стили и скрипты не загружаются (404) | Пути должны начинаться с /static/…; проверить F12 → Network |
+| В консоли F12: getJson is not defined | common.js подключён после скрипта страницы: поменять порядок |
+| Меню в шапке пустое | Ошибка JavaScript: посмотреть F12 → Console |
+
+## 8. Структура проекта
+- app.py — маршруты Flask;
+- config.py, db.py, repositories.py, validators.py — настройки, БД, классы (ООП), проверки;
+- create_admin.py — создание администратора;
+- schema.sql — схема базы SQLite;
+- pages/ — HTML-страницы;
+- static/css, static/js, static/img, static/vendor/bootstrap — стили, скрипты, графика, Bootstrap.
