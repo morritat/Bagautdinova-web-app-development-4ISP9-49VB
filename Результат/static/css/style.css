@@ -1,0 +1,115 @@
+/* Стили портала «Конференции.РФ». Имена классов по БЭМ. */
+:root {
+    --color-primary: #1f4e8c;
+    --color-primary-dark: #163a69;
+    --color-accent: #f2a541;
+    --color-bg: #f5f7fb;
+    --color-text: #1e2430;
+    --color-muted: #6b7280;
+    --color-error: #c0392b;
+    --font-h1: 2rem;
+    --font-h2: 1.375rem;
+    --font-text: 1rem;
+    --font-small: 0.875rem;
+    --radius: 12px;
+}
+.page {
+    display: flex; flex-direction: column; min-height: 100vh;
+    background: var(--color-bg); color: var(--color-text);
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: var(--font-text); line-height: 1.5;
+}
+.main { flex: 1; padding-top: 24px; padding-bottom: 40px; }
+.section-title, .form-box__title, .hero__title {
+    font-size: var(--font-h1); font-weight: 700;
+    color: var(--color-primary); margin-bottom: 16px;
+}
+.btn-primary {
+    --bs-btn-bg: var(--color-primary);
+    --bs-btn-border-color: var(--color-primary);
+    --bs-btn-hover-bg: var(--color-primary-dark);
+    --bs-btn-hover-border-color: var(--color-primary-dark);
+}
+a { color: var(--color-primary); }
+.header { background: var(--color-primary); }
+.header__inner {
+    display: flex; flex-wrap: wrap; align-items: center;
+    justify-content: space-between; gap: 12px;
+    padding-top: 12px; padding-bottom: 12px;
+}
+.header__logo {
+    display: flex; align-items: center; gap: 8px; color: #fff;
+    font-size: var(--font-h2); font-weight: 700; text-decoration: none;
+}
+.header__logo-img { width: 36px; height: 36px; }
+.nav { display: flex; flex-wrap: wrap; gap: 16px; }
+.nav__link { color: #fff; text-decoration: none; border-bottom: 2px solid transparent; }
+.slider { border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+.slider__img { height: 360px; object-fit: cover; }
+.slider__caption h2 {
+    display: inline-block; color: #fff; background: rgba(0,0,0,0.45);
+    padding: 6px 14px; border-radius: 8px;
+}
+.rooms { margin-top: 32px; }
+.room-card, .booking-card { height: 100%; border: none; border-radius: var(--radius); }
+.room-card__title, .booking-card__title { font-size: var(--font-h2); font-weight: 600; }
+.room-card__type { color: var(--color-muted); margin: 0; }
+.booking-card__row { margin-bottom: 4px; }
+.booking-card__form { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.booking-card__review { margin-top: 12px; font-style: italic; }
+.status {
+    display: inline-block; padding: 2px 10px; border-radius: 20px;
+    font-size: var(--font-small); color: #fff; margin-bottom: 8px;
+}
+.status--new { background: var(--color-accent); }
+.status--planned { background: var(--color-primary); }
+.status--done { background: #2e8b57; }
+.form-box {
+    max-width: 480px; margin: 0 auto; background: #fff; padding: 24px;
+    border-radius: var(--radius); box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.form__group { margin-bottom: 16px; }
+.form__legend { font-size: var(--font-text); }
+.form__hint { display: block; color: var(--color-muted); font-size: var(--font-small); }
+.form__error { color: var(--color-error); font-size: var(--font-small); min-height: 1.2em; }
+.form__error--common { font-size: var(--font-text); text-align: center; margin-bottom: 8px; }
+.form-box__switch { margin-top: 16px; text-align: center; font-size: var(--font-small); }
+.cabinet__list { margin-top: 16px; }
+.admin__filter { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 20px; }
+.admin__filter .form-select { width: auto; }
+.footer { background: var(--color-text); color: #cfd6e4; padding: 16px 0; }
+.footer__text { margin: 0; font-size: var(--font-small); }
+
+/* Смартфон 390x844 и уже */
+@media (max-width: 576px) {
+    /* Дополнения: кнопки во всю ширину, карточки в одну колонку, фильтр столбиком */
+    button[type="submit"], .button, .btn { width: 100%; padding: 14px 20px; }
+    .col-md-6, .col-xl-4 { flex: 0 0 100%; max-width: 100%; }
+    .admin__filter { flex-direction: column; align-items: flex-start; }
+    .admin__filter .form-select { width: 100%; }
+}
+
+/* Анимации и микро-анимации */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slide-down {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.main { animation: fade-in 0.5s ease; }          /* есть на каждой странице */
+.message { animation: slide-down 0.4s ease; }
+.button { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.button:hover { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(31, 78, 140, 0.25); }
+.nav__link { transition: color 0.2s ease, border-color 0.2s ease; }
+.nav__link:hover { color: var(--color-accent); border-color: var(--color-accent); }
+.room-card, .booking-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+.room-card:hover, .booking-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
+
+/* Адаптация под тематику «Хакатоны.РФ»: меняем только переменные */
+:root {
+    --color-primary: #6f42c1;      /* фиолетовый */
+    --color-primary-dark: #5a32a3;
+    --color-accent: #0dcaf0;       /* голубой акцент */
+}
