@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/img/logo.png">
+    <title>Регистрация — Конференции.РФ</title>
+    <link rel="stylesheet" href="/static/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="page">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container header__inner">
+            <a class="header__logo" href="/">
+                <img class="header__logo-img" src="/static/img/logo.png" alt="Логотип">
+                <span>Конференции.РФ</span>
+            </a>
+            <nav class="nav" id="nav"></nav>
+        </div>
+    </header>
+
+    <!-- Основное содержимое: форма регистрации -->
+    <main class="main container">
+        <div id="messages"></div>
+
+        <section class="form-box">
+            <h1 class="form-box__title">Регистрация</h1>
+            <!-- novalidate отключает всплывающие подсказки браузера: ошибки показывает наш JS -->
+            <form id="registerForm" class="form" method="post" action="/register" novalidate>
+                <div class="form__group">
+                    <label class="form-label" for="login">Логин</label>
+                    <input class="form-control" id="login" name="login" placeholder="ivanov2027">
+                    <small class="form__hint">Латиница и цифры, не менее 6 символов</small>
+                    <div class="form__error" data-error="login"></div>
+                </div>
+                <div class="form__group">
+                    <label class="form-label" for="password">Пароль</label>
+                    <input class="form-control" id="password" name="password" type="password">
+                    <small class="form__hint">Не менее 8 символов</small>
+                    <div class="form__error" data-error="password"></div>
+                </div>
+                <div class="form__group">
+                    <label class="form-label" for="full_name">ФИО</label>
+                    <input class="form-control" id="full_name" name="full_name" placeholder="Иванов Иван Иванович">
+                    <small class="form__hint">Только кириллица и пробелы</small>
+                    <div class="form__error" data-error="full_name"></div>
+                </div>
+                <div class="form__group">
+                    <label class="form-label" for="phone">Телефон</label>
+                    <input class="form-control" id="phone" name="phone" type="tel" placeholder="8(900)123-45-67">
+                    <small class="form__hint">Формат: 8(XXX)XXX-XX-XX</small>
+                    <div class="form__error" data-error="phone"></div>
+                </div>
+                <div class="form__group">
+                    <label class="form-label" for="email">Электронная почта</label>
+                    <input class="form-control" id="email" name="email" type="email" placeholder="name@example.ru">
+                    <div class="form__error" data-error="email"></div>
+                </div>
+                <button class="btn btn-primary button w-100" type="submit">Зарегистрироваться</button>
+            </form>
+            <p class="form-box__switch">Уже зарегистрированы? <a href="/login">Войти</a></p>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2027 Конференции.РФ — бронирование помещений для всероссийских конференций</p>
+        </div>
+    </footer>
+
+    <script src="/static/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/validation.js"></script>
+</body>
+</html>
